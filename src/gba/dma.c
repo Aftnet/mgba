@@ -97,12 +97,12 @@ uint16_t GBADMAWriteCNT_HI(struct GBA* gba, int dma, uint16_t control) {
 			mLOG(GBA_DMA, GAME_ERROR, "Misaligned DMA destination address: 0x%08X", currentDma->nextDest);
 		}
 #ifndef __LIBRETRO__
-		mLOG(GBA_DMA, INFO, "Starting DMA %i 0x%08X -> 0x%08X (%04X:%04X)", dma,
+		mLOG(GBA_DMA, INFO, "Starting DMA %i 0x%08X -> 0x%08X (%04X:%04X)", dma, currentDma->nextSource,
+		     currentDma->nextDest, currentDma->reg, currentDma->count & 0xFFFF);
 #else
-		mLOG(GBA_DMA, DEBUG, "Starting DMA %i 0x%08X -> 0x%08X (%04X:%04X)", dma,
+		mLOG(GBA_DMA, DEBUG, "Starting DMA %i 0x%08X -> 0x%08X (%04X:%04X)", dma, currentDma->nextSource,
+		     currentDma->nextDest, currentDma->reg, currentDma->count & 0xFFFF);
 #endif
-		     currentDma->nextSource, currentDma->nextDest,
-		     currentDma->reg, currentDma->count & 0xFFFF);
 
 		currentDma->nextSource &= -width;
 		currentDma->nextDest &= -width;
